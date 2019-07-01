@@ -1,0 +1,60 @@
+{% extends "layout.html" %} {% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% if messages %}
+            <div>
+                <ul>
+                    {% for i in messages %}
+                    <li>{{i}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table">
+                <caption>List of faults</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Contact on Updates</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in all_faults %}
+                    <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.name}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.phone_number}}</td>
+                        <td>{{i.description}}</td>
+                        <td>photo</td>
+                        <td>
+                            <h4>
+                                {% if i.contacted_on_updates is True %}<span class="badge badge-success">Yes</span> {% else %}<span class="badge badge-danger">No</span> {% endif %}
+                            </h4>
+                        </td>
+                        <td>
+                            <h4>
+                                {% if i.followed_up is True %}<span class="badge badge-success">Done</span> {% else %}<span class="badge badge-danger">Pending</span> {% endif %}
+                            </h4>
+                        </td>
+                        <td><a class="btn btn-primary" href="{% url 'follow_up_link' i.id %}" role="button">Toggle Status</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

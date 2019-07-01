@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% load crispy_forms_tags %} {% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% if messages %}
+            <div>
+                <ul>
+                    {% for i in messages %}
+                    <li>{{i}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %} {% if fault_form.errors %} {% for field in fault_form %} {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %} {% endfor %} {% for error in fault_form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+            {% endfor %} {% endif %}
+
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %} {% crispy fault_form %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
