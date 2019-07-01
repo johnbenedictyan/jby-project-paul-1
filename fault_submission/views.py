@@ -1,11 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 from .models import fault
-
 from .forms import fault_form
 
-# Create your views here.
+@login_required
 def fault_submission(request):
     if request.method=="GET":
         new_fault_form = fault_form()

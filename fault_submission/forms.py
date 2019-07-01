@@ -23,7 +23,7 @@ class fault_form(forms.ModelForm):
     class Meta:
         model = fault
         fields = '__all__'
-        exclude = ('followed_up',)
+        exclude = ('followed_up','date_of_creation',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

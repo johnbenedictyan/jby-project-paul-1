@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class fault(models.Model):
@@ -28,6 +29,10 @@ class fault(models.Model):
     followed_up = models.BooleanField(
         blank=True,
         default=False
+    )
+    date_of_creation = models.DateField(
+        blank=True,
+        default=date.today
     )
     def __str__(self):  
         return self.name

@@ -20,6 +20,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Date/Time</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone Number</th>
@@ -34,6 +35,7 @@
                     {% for i in all_faults %}
                     <tr>
                         <th scope="row">{{i.id}}</th>
+                        <th>{{i.date_of_creation}}</th>
                         <td>{{i.name}}</td>
                         <td>{{i.email}}</td>
                         <td>{{i.phone_number}}</td>
