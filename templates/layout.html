@@ -33,6 +33,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'fault_submission_link' %}">Fault Submission</a>
                 </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sign_out_link' %}">Sign Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sign_in_link' %}">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sign_up_link' %}">Sign Up</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

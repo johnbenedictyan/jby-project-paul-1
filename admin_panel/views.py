@@ -3,6 +3,7 @@ from fault_submission.models import fault
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import RegisterUserForm,LoginForm
+from django.contrib import auth, messages
 
 def sign_up(request):
     if request.method == 'GET':
@@ -14,7 +15,7 @@ def sign_up(request):
                       }
                      )
     else:
-        dirty_sign_up_form = UserCreationForm(request.POST)
+        dirty_sign_up_form = RegisterUserForm(request.POST)
         if dirty_sign_up_form.is_valid():
             dirty_sign_up_form.save()
             username = dirty_sign_up_form.cleaned_data.get('username')
@@ -33,7 +34,7 @@ def sign_up(request):
                 request,
                 "We are unable to create your account!"
             )
-            return(request,
+            return render(request,
                   'signup.html',
                   {
                       'sign_up_form':dirty_sign_up_form
@@ -49,6 +50,7 @@ def sign_in(request):
                      }
                      )
     else:
+        next_url = request.GET.get('next')
         input_username = request.POST.get('username')
         input_password = request.POST.get('password')
         user = auth.authenticate(
@@ -64,7 +66,10 @@ def sign_in(request):
                 request, 
                 "Welcome back"
             )
-            return redirect("/")
+            if next_url:
+                return redirect(next_url)
+            else:
+                return redirect("/")
         else:
             messages.error(
                 request, 

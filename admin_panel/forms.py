@@ -62,6 +62,12 @@ class RegisterUserForm(UserCreationForm):
             'password2'
         )
         
+    def clean_username(self):
+        requested_username = self.cleaned_data.get('username')
+        if User.objects.filter(username=requested_username).count() > 0:
+            raise forms.ValidationError("This username is already taken.")
+        return requested_username
+    
     def clean_email(self):
         username = self.cleaned_data.get('username')
         requested_email = self.cleaned_data.get('email')
