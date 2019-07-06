@@ -27,7 +27,7 @@ SECRET_KEY = '7fbi=-)egd*5at^k0k8plgst4h&a95*a_&)fy2pna8#o01u+ag'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["jby-project-paul-1-johnyfx00504386.codeanyapp.com"]
+ALLOWED_HOSTS = ["jby-project-paul-1-johnyfx00504386.codeanyapp.com","https://condo-fault-project.herokuapp.com"]
 
 
 # Application definition
