@@ -27,7 +27,7 @@ SECRET_KEY = '7fbi=-)egd*5at^k0k8plgst4h&a95*a_&)fy2pna8#o01u+ag'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["jby-project-paul-1-johnyfx00504386.codeanyapp.com","https://condo-fault-project.herokuapp.com"]
+ALLOWED_HOSTS = ["jby-project-paul-1-johnyfx00504386.codeanyapp.com","https://condo-fault-project.herokuapp.com","e5deb49e1e1a4281a9286bda38916f5b.vfs.cloud9.ap-southeast-1.amazonaws.com"]
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'condo_fault_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+DATABASES = {'default': dj_database_url.parse("postgres://nzsfffcppbiudw:47e11edd2c23e568d8b73b976f1348a22be1b6d0fd8c712a1fcdcaed93d55f3e@ec2-174-129-227-205.compute-1.amazonaws.com:5432/deh3dnjntrnora")}
     
 if 'test' in sys.argv:
     DATABASES = {
