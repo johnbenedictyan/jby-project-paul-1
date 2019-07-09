@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from .forms import RegisterUserForm,LoginForm
 from django.contrib import auth, messages
+from condo_fault_project import settings
+
 
 def sign_up(request):
     if request.method == 'GET':
@@ -28,7 +30,7 @@ def sign_up(request):
                 request, 
                 user
             )
-            return redirect('/')
+            return redirect(settings.HOME_URL)
         else:
             messages.error(
                 request,
@@ -42,6 +44,7 @@ def sign_up(request):
 
 def sign_in(request):
     if request.method == "GET":
+        print(messages.error)
         sign_in_form = LoginForm()
         return render(request,
                      'signin.html',
@@ -69,13 +72,13 @@ def sign_in(request):
             if next_url:
                 return redirect(next_url)
             else:
-                return redirect("/")
+                return redirect(settings.HOME_URL)
         else:
             messages.error(
                 request, 
                 "Invalid Login"
             )
-            return redirect("/sign_in/")
+            return redirect(settings.LOGIN_URL)
         return
 
 @login_required
@@ -103,4 +106,4 @@ def follow_up(request,fault_id):
     else:
         requested_fault.followed_up = True
         requested_fault.save()
-    return redirect("/")
+    return redirect(settings.HOME_URL)

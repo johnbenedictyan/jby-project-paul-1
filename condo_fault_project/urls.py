@@ -20,6 +20,6 @@ from fault_submission.urls import urlpatterns as fault_submission_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^', include(admin_panel_urls)),
-    re_path(r'^fault_submission/', include(fault_submission_urls)),
+    re_path(r'^admin_panel/', include(admin_panel_urls)),
+    re_path(r'^', include(fault_submission_urls)),
 ]

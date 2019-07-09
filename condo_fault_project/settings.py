@@ -13,22 +13,38 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import sys
 import dj_database_url
+from django.contrib.messages import constants as messages
+
+# Changes the messages tag so that are displayed in Bootstrap
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# This line changes the default message storage to be a session based one.
+# This allows messages to be rendered through a redirect.
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# This allows the cookies to persist sitewide.
+SESSION_COOKIE_SECURE = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '7fbi=-)egd*5at^k0k8plgst4h&a95*a_&)fy2pna8#o01u+ag'
+# SECRET_KEY = os.urandom(24)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["jby-project-paul-1-johnyfx00504386.codeanyapp.com","condo-fault-project.herokuapp.com","e5deb49e1e1a4281a9286bda38916f5b.vfs.cloud9.ap-southeast-1.amazonaws.com"]
-
+ALLOWED_HOSTS = ["condo-fault-project.herokuapp.com","e5deb49e1e1a4281a9286bda38916f5b.vfs.cloud9.ap-southeast-1.amazonaws.com"]
 
 # Application definition
 
@@ -44,6 +60,7 @@ INSTALLED_APPS = [
     'crispy_forms'
 ]
 
+# This changes the crispy forms to render the form in Bootstrap.
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -133,8 +150,8 @@ STATICFILES_DIRS=[
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
+# Commonly used url routes.
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/sign_in/'
-LOGOUT_URL = 'sign_out/'
+LOGIN_URL = '/admin_panel/sign_in/'
+LOGOUT_URL = '/admin_panel/sign_out/'
+HOME_URL = '/'

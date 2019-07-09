@@ -2,15 +2,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            {% if messages %}
-            <div>
-                <ul>
-                    {% for i in messages %}
-                    <li>{{i}}</li>
-                    {% endfor %}
-                </ul>
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button> {{ message }}
             </div>
-            {% endif %} {% if signin_form.errors %} {% for field in signin_form %} {% for error in field.errors %}
+            {% endfor %} {% if signin_form.errors %} {% for field in signin_form %} {% for error in field.errors %}
             <div class="alert alert-danger">
                 <strong>{{ error|escape }}</strong>
             </div>
