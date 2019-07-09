@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from fault_submission.models import fault
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
-from .forms import RegisterUserForm,LoginForm
+from .forms import RegisterUserForm,SignInForm
 from django.contrib import auth, messages
 from condo_fault_project import settings
 
@@ -45,7 +45,7 @@ def sign_up(request):
 def sign_in(request):
     if request.method == "GET":
         print(messages.error)
-        sign_in_form = LoginForm()
+        sign_in_form = SignInForm()
         return render(request,
                      'signin.html',
                      {

@@ -17,8 +17,10 @@
                 <strong>{{ error|escape }}</strong>
             </div>
             {% endfor %} {% endif %}
-
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %} {% crispy sign_in_form %}
             </form>

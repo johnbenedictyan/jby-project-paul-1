@@ -2,9 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
+from crispy_forms.layout import Layout, Submit, Row, Column, HTML, Div
 
-class LoginForm(forms.Form):
+class SignInForm(forms.Form):
     username = forms.CharField(required=True)
     password = forms.CharField(
         required=True, 
@@ -14,6 +14,19 @@ class LoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            Row(
+                Column(
+                    Div(
+                        HTML(
+                            """
+                            <h3>
+                                Sign In
+                            </h3>
+                            """
+                        )
+                    )
+                )
+            ),
             Row(
                 Column(
                     'username', 
@@ -69,7 +82,6 @@ class RegisterUserForm(UserCreationForm):
         return requested_username
     
     def clean_email(self):
-        username = self.cleaned_data.get('username')
         requested_email = self.cleaned_data.get('email')
         if User.objects.filter(email=requested_email).count() > 0:
             raise forms.ValidationError("This email is already in use")
@@ -89,6 +101,19 @@ class RegisterUserForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            Row(
+                Column(
+                    Div(
+                        HTML(
+                            """
+                            <h3>
+                                Sign Up
+                            </h3>
+                            """
+                        )
+                    )
+                )
+            ),
             Row(
                 Column(
                     'username', 
