@@ -4,6 +4,7 @@ from .models import fault
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, HTML, Div
+from pyuploadcare.dj.forms import FileWidget, ImageField
 
 # This form uses the crispy_form layout helper heavily. 
 # More details on its usage can be found here: https://django-crispy-forms.readthedocs.io/en/d-0/layouts.html
@@ -13,6 +14,12 @@ TRUE_FALSE_CHOICES = (
 )
 
 class fault_form(forms.ModelForm):
+    photo = ImageField(widget=FileWidget(attrs={
+        'data-public-key':'1164fee45dc9e007b701',
+        'data-images-only':'True',
+        'data-preview-step':'True',
+    }))
+    
     contacted_on_updates = forms.ChoiceField(
         label="Do you wish to be contacted on the updates?",
         choices=TRUE_FALSE_CHOICES, 

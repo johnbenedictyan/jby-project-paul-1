@@ -106,4 +106,4 @@ def follow_up(request,fault_id):
     else:
         requested_fault.followed_up = True
         requested_fault.save()
-    return redirect(settings.HOME_URL)
+    return redirect("/admin_panel/")

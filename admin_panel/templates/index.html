@@ -38,7 +38,7 @@
                         <td>{{i.email}}</td>
                         <td>{{i.phone_number}}</td>
                         <td>{{i.description}}</td>
-                        <td>photo</td>
+                        <td style="background-image:url({{i.photo.cdn_url}});width:250px;height:250px;background-position:center;background-size:cover;"></td>
                         <td>
                             <h4>
                                 {% if i.contacted_on_updates is True %}<span class="badge badge-success">Yes</span> {% else %}<span class="badge badge-danger">No</span> {% endif %}

@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from pyuploadcare.dj.models import ImageField
 
 # Create your models here.
 class fault(models.Model):
@@ -19,8 +20,7 @@ class fault(models.Model):
     description = models.TextField(
         blank=False
     )
-    photo = models.FileField(
-        upload_to='uploads/',
+    photo = ImageField(
         blank=False
     )
     agree_to_clauses = models.BooleanField(

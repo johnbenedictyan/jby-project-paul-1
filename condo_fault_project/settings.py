@@ -14,6 +14,7 @@ import os
 import sys
 import dj_database_url
 from django.contrib.messages import constants as messages
+# import env
 
 # Changes the messages tag so that are displayed in Bootstrap
 MESSAGE_TAGS = {
@@ -49,6 +50,7 @@ ALLOWED_HOSTS = ["condo-fault-project.herokuapp.com","e5deb49e1e1a4281a9286bda38
 # Application definition
 
 INSTALLED_APPS = [
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -155,3 +157,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/admin_panel/sign_in/'
 LOGOUT_URL = '/admin_panel/sign_out/'
 HOME_URL = '/'
+
+UPLOADCARE = {
+    'pub_key': os.environ.get("UPLOADCARE_PUBLIC_KEY"),
+    'secret': os.environ.get("UPLOADCARE_SECRET_KEY"),
+    'widget_version': '2.8.1',
+    'widget_build': 'min',  ## without jQuery
+}
