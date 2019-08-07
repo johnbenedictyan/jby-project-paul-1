@@ -103,7 +103,15 @@ def follow_up(request,fault_id):
     if requested_fault.followed_up is True:
         requested_fault.followed_up = False
         requested_fault.save()
+        messages.success(
+                request, 
+                "The status has been successfully changed to PENDING"
+            )
     else:
         requested_fault.followed_up = True
         requested_fault.save()
+        messages.success(
+                request, 
+                "The status has been successfully changed to DONE"
+            )
     return redirect("/admin_panel/")
