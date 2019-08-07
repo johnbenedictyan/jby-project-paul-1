@@ -16,6 +16,9 @@ import dj_database_url
 from django.contrib.messages import constants as messages
 # import env
 
+# Overrides the default django error for an invalid CSRF token with a custom view function.
+CSRF_FAILURE_VIEW = 'fault_submission.views.csrf_failure'
+
 # Changes the messages tag so that are displayed in Bootstrap
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
